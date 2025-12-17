@@ -22,7 +22,7 @@ export default async function Home() {
   return (
     <main className="min-h-screen py-20 px-4 md:px-12 bg-[linear-gradient(90deg,#012169,#751475)]">
       {/* Header section */}
-      <div className="max-w-7xl mx-auto mb-16 text-center md:text-left px-4">
+      <div className="max-w-7xl mx-auto mb-16 text-center md:text-left px-4 md:px-8">
         <span className="text-somavedic-amber font-bold tracking-[0.3em] uppercase text-xs mb-4 block">
           Somavedic Annual Overview
         </span>
@@ -47,8 +47,8 @@ export default async function Home() {
           products={stats?.topProducts || []} 
         />
         <VisitorStats 
-          totalVisits={stats?.totalVisits || 252798} 
-          totalOrders={stats?.totalOrders || 0}
+          totalUnitsSold={totalUnits}
+          totalCustomers={stats?.totalCustomers || 0}
         />
         <ImpactCounter 
           totalHours={harmonyHours} 

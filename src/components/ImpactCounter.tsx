@@ -37,19 +37,20 @@ export const ImpactCounter = ({ totalHours }: ImpactCounterProps) => {
         <motion.span className="text-4xl md:text-5xl font-bold tracking-tighter text-white tabular-nums">
           <motion.span>{displayValue}</motion.span>
         </motion.span>
-        <span className="text-sm text-white/40 mt-2 font-medium">
+        <span className="text-md text-white/60 mt-2 font-medium">
           Total Hours of Harmony created in 2025
         </span>
       </div>
 
-      <div className="mt-8 h-1 w-full bg-white/5 rounded-full overflow-hidden">
-        <motion.div
-          initial={{ width: 0 }}
-          animate={{ width: "100%" }}
-          transition={{ duration: 2, ease: "easeOut" }}
-          className="h-full bg-somavedic-amber shadow-[0_0_10px_rgba(255,184,0,0.5)]"
-        />
+      <div className="flex flex-col mt-8">
+        <span className="text-4xl md:text-5xl font-bold tracking-tighter text-white tabular-nums">
+          120
+        </span>
+        <span className="text-md text-white/60 mt-2 font-medium">
+          Gifted Somavedics for greater good
+        </span>
       </div>
+
     </BentoCard>
   );
 };
