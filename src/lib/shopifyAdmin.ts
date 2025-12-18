@@ -56,7 +56,7 @@ async function fetchShopifyStatsInternal() {
     let pageCount = 0;
     while (hasNextPage && pageCount < 10) {
       pageCount++;
-      const response = await fetch(`https://${domain}/admin/api/2024-01/graphql.json`, {
+      const response: Response = await fetch(`https://${domain}/admin/api/2024-01/graphql.json`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
