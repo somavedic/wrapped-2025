@@ -3,6 +3,7 @@
 import { BentoCard } from "./BentoGrid";
 import { Trophy, Zap, Package } from "lucide-react";
 import { motion } from "framer-motion";
+import { useLocale } from "./LocaleContext";
 
 interface ProductStat {
   title: string;
@@ -17,9 +18,7 @@ interface TopProductsListProps {
   accessories: ProductStat[];
 }
 
-const ProductItem = ({ product, idx, maxQty }: { product: ProductStat; idx: number; maxQty: number }) => {
-  const productUrl = `https://${process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN || 'somavedic.com'}/products/${product.handle || product.title.toLowerCase().replace(/ /g, '-')}`;
-
+const ProductItem = ({ product, idx, maxQty, productUrl }: { product: ProductStat; idx: number; maxQty: number; productUrl: string }) => {
   return (
     <motion.div
       key={product.title}
@@ -78,14 +77,15 @@ const ProductItem = ({ product, idx, maxQty }: { product: ProductStat; idx: numb
 };
 
 export const TopProductsList = ({ somavedics, accessories }: TopProductsListProps) => {
+  const { t, getProductLink } = useLocale();
   const maxSomavedicQty = somavedics[0]?.quantity || 1;
   const maxAccessoryQty = accessories[0]?.quantity || 1;
 
   return (
     <BentoCard
-      badge="Top Performers"
-      title="Most Popular Products"
-      description="The models that brought harmony to the most homes in 2025."
+      badge={t.topPerformers}
+      title={t.mostPopularProducts}
+      description={t.popularProductsDesc}
       className="md:row-span-2"
     >
       <div className="mt-2 space-y-6">
@@ -93,11 +93,17 @@ export const TopProductsList = ({ somavedics, accessories }: TopProductsListProp
         <div>
           <div className="flex items-center gap-2 mb-3">
             <Zap className="w-4 h-4 text-somavedic-amber" />
-            <h3 className="text-xs font-bold text-white/60 uppercase tracking-wider">Top 6 Somavedics</h3>
+            <h3 className="text-xs font-bold text-white/60 uppercase tracking-wider">{t.topSomavedics}</h3>
           </div>
           <div className="space-y-4">
             {somavedics.map((product, idx) => (
-              <ProductItem key={product.title} product={product} idx={idx} maxQty={maxSomavedicQty} />
+              <ProductItem 
+                key={product.title} 
+                product={product} 
+                idx={idx} 
+                maxQty={maxSomavedicQty} 
+                productUrl={getProductLink(product.handle || product.title.toLowerCase().replace(/ /g, '-'))}
+              />
             ))}
           </div>
         </div>
@@ -109,11 +115,17 @@ export const TopProductsList = ({ somavedics, accessories }: TopProductsListProp
         <div>
           <div className="flex items-center gap-2 mb-3">
             <Package className="w-4 h-4 text-somavedic-amber" />
-            <h3 className="text-xs font-bold text-white/60 uppercase tracking-wider">Top 4 Accessories</h3>
+            <h3 className="text-xs font-bold text-white/60 uppercase tracking-wider">{t.topAccessories}</h3>
           </div>
           <div className="space-y-4">
             {accessories.map((product, idx) => (
-              <ProductItem key={product.title} product={product} idx={idx} maxQty={maxAccessoryQty} />
+              <ProductItem 
+                key={product.title} 
+                product={product} 
+                idx={idx} 
+                maxQty={maxAccessoryQty}
+                productUrl={getProductLink(product.handle || product.title.toLowerCase().replace(/ /g, '-'))}
+              />
             ))}
           </div>
         </div>

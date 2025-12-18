@@ -41,7 +41,7 @@ export function CobeGlobe() {
       mapSamples: 16000,
       mapBrightness: 6,
       baseColor: [0.3, 0.3, 0.3],
-      markerColor: [1, 0.8, 0], // Somavedic Amber-ish
+      markerColor: [1, 0.4, 0.6], // Pinkish
       glowColor: [1, 1, 1],
       opacity: 1, // Optional opacity
       markers: [
@@ -64,7 +64,7 @@ export function CobeGlobe() {
         { location: [41.9028, 12.4964], size: 0.03 }, // Rome
         { location: [40.4168, -3.7038], size: 0.03 }, // Madrid
         { location: [52.3676, 4.9041], size: 0.04 }, // Amsterdam
-        { location: [50.0755, 14.4378], size: 0.09 }, // Prague (Home!)
+        { location: [50.0755, 14.4378], size: 0.06 }, // Prague (Home!)
         { location: [48.1486, 17.1077], size: 0.04 }, // Bratislava
         { location: [47.3769, 8.5417], size: 0.04 }, // Zurich
         { location: [59.3293, 18.0686], size: 0.03 }, // Stockholm
@@ -87,7 +87,7 @@ export function CobeGlobe() {
         // Called on every animation frame.
         // `state` will be an empty object, return updated params.
         state.phi = phi + r.get();
-        phi += 0.003;
+        phi += 0.002; // 30% slower rotation
         state.width = width * 2;
         state.height = width * 2;
       },

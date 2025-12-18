@@ -1,5 +1,8 @@
+"use client";
+
 import { BentoCard } from "./BentoGrid";
 import { Star, ArrowUpRight } from "lucide-react";
+import { useLocale } from "./LocaleContext";
 
 interface TopProductProps {
   product: {
@@ -11,15 +14,17 @@ interface TopProductProps {
 }
 
 export const TopProduct = ({ product }: TopProductProps) => {
+  const { t, getProductLink } = useLocale();
+  
   if (!product) return null;
 
-  const productUrl = `https://${process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN || 'somavedic.com'}/products/${product.handle || product.title.toLowerCase().replace(/ /g, '-')}`;
+  const productUrl = getProductLink(product.handle || product.title.toLowerCase().replace(/ /g, '-'));
 
   return (
     <BentoCard
-      badge="Your Favorite"
-      title="The Community Choice"
-      description={`The #1 best-selling model of 2025 with ${product.quantity} units shipped.`}
+      badge={t.yourFavorite}
+      title={t.communityChoice}
+      description={t.bestSellingDesc}
       className="md:col-span-1"
     >
       <div className="flex flex-col h-full">
@@ -49,7 +54,7 @@ export const TopProduct = ({ product }: TopProductProps) => {
            target="_blank"
            className="mt-4 w-full bg-white text-black font-bold py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-somavedic-amber transition-colors"
          >
-           View Product <ArrowUpRight className="w-4 h-4" />
+           {t.viewProduct} <ArrowUpRight className="w-4 h-4" />
          </a>
       </div>
     </BentoCard>

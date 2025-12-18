@@ -3,12 +3,14 @@
 import { motion } from "framer-motion";
 import { BentoCard } from "./BentoGrid";
 import { TrendingUp } from "lucide-react";
+import { useLocale } from "./LocaleContext";
 
 interface SalesChartProps {
   data: { month: string; sales: number }[];
 }
 
 export const SalesChart = ({ data }: SalesChartProps) => {
+  const { t } = useLocale();
   const maxSales = Math.max(...data.map((d) => d.sales));
   const points = data.map((d, i) => {
     const x = (i / (data.length - 1)) * 100;
@@ -18,9 +20,9 @@ export const SalesChart = ({ data }: SalesChartProps) => {
 
   return (
     <BentoCard
-      badge="Yearly Trends"
-      title="Momentum"
-      description="2025 saw unprecedented growth in global wellness interest."
+      badge={t.yearlyTrends}
+      title={t.momentum}
+      description={t.momentumDesc}
       className="md:col-span-2 overflow-hidden"
     >
       <div className="mt-8 relative h-32 w-full">
@@ -95,7 +97,7 @@ export const SalesChart = ({ data }: SalesChartProps) => {
 
       <div className="absolute top-6 right-6 flex items-center gap-2 text-somavedic-amber">
         <TrendingUp className="w-4 h-4" />
-        <span className="text-xs font-bold">+184% YoY</span>
+        <span className="text-xs font-bold">+184% {t.yoy}</span>
       </div>
     </BentoCard>
   );

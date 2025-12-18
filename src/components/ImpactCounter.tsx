@@ -1,56 +1,62 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, useSpring, useTransform } from "framer-motion";
 import { BentoCard } from "./BentoGrid";
-import { Zap } from "lucide-react";
+import { Shield, Heart, Sparkles, Wind } from "lucide-react";
+import { useLocale } from "./LocaleContext";
 
 interface ImpactCounterProps {
   totalHours: number;
 }
 
 export const ImpactCounter = ({ totalHours }: ImpactCounterProps) => {
-  const springValue = useSpring(0, {
-    stiffness: 20,
-    damping: 15,
-  });
-
-  const displayValue = useTransform(springValue, (latest) => 
-    Math.floor(latest).toLocaleString()
-  );
-
-  useEffect(() => {
-    springValue.set(totalHours);
-  }, [totalHours, springValue]);
-
+  const { t } = useLocale();
+  
   return (
     <BentoCard
-      badge="Impact"
+      badge={t.researchHighlights}
       className="bg-gradient-to-br from-somavedic-amber/10 to-transparent"
     >
-      <div className="flex items-center gap-2 text-somavedic-amber mb-6">
-        <Zap className="w-5 h-5 fill-current" />
-        <span className="text-xs font-bold uppercase tracking-wider">Active Harmonization</span>
-      </div>
+      <div className="grid grid-cols-1 gap-8">
+        {/* Cell Protection */}
+        <div className="space-y-1">
+          <div className="flex items-center gap-1.5 text-somavedic-amber">
+            <Shield className="w-3.5 h-3.5" />
+            <span className="text-xs font-bold uppercase tracking-wider">{t.cellProtection}</span>
+          </div>
+          <h3 className="text-3xl font-bold tracking-tighter text-white">80.1%</h3>
+          <p className="text-sm text-white/60 leading-tight">{t.cellRecoveryDesc}</p>
+        </div>
 
-      <div className="flex flex-col">
-        <motion.span className="text-4xl md:text-5xl font-bold tracking-tighter text-white tabular-nums">
-          <motion.span>{displayValue}</motion.span>
-        </motion.span>
-        <span className="text-md text-white/60 mt-2 font-medium">
-          Total Hours of Harmony created in 2025
-        </span>
-      </div>
+        {/* Inflammation */}
+        <div className="space-y-1">
+          <div className="flex items-center gap-1.5 text-somavedic-amber">
+            <Heart className="w-3.5 h-3.5" />
+            <span className="text-xs font-bold uppercase tracking-wider">{t.inflammation}</span>
+          </div>
+          <h3 className="text-3xl font-bold tracking-tighter text-white">58%</h3>
+          <p className="text-sm text-white/60 leading-tight">{t.inflammationDesc}</p>
+        </div>
 
-      <div className="flex flex-col mt-8">
-        <span className="text-4xl md:text-5xl font-bold tracking-tighter text-white tabular-nums">
-          120
-        </span>
-        <span className="text-md text-white/60 mt-2 font-medium">
-          Gifted Somavedics for greater good
-        </span>
-      </div>
+        {/* Ion Boost */}
+        <div className="space-y-1">
+          <div className="flex items-center gap-1.5 text-somavedic-amber">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span className="text-xs font-bold uppercase tracking-wider">{t.airQuality}</span>
+          </div>
+          <h3 className="text-3xl font-bold tracking-tighter text-white">2x</h3>
+          <p className="text-sm text-white/60 leading-tight">{t.airQualityDesc}</p>
+        </div>
 
+        {/* Optimal Ions */}
+        <div className="space-y-1">
+          <div className="flex items-center gap-1.5 text-somavedic-amber">
+            <Wind className="w-3.5 h-3.5" />
+            <span className="text-xs font-bold uppercase tracking-wider">{t.ionLevels}</span>
+          </div>
+          <h3 className="text-3xl font-bold tracking-tighter text-white">10x</h3>
+          <p className="text-sm text-white/60 leading-tight">{t.ionLevelsDesc}</p>
+        </div>
+      </div>
     </BentoCard>
   );
 };

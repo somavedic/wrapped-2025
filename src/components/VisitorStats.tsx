@@ -1,42 +1,70 @@
-import { BentoCard } from "./BentoGrid";
+"use client";
 
+import { BentoCard } from "./BentoGrid";
+import { useLocale } from "./LocaleContext";
 
 interface VisitorStatsProps {
   totalUnitsSold: number;
   totalCustomers: number;
+  totalHours: number;
 }
 
-export const VisitorStats = ({ totalUnitsSold, totalCustomers }: VisitorStatsProps) => {
+export const VisitorStats = ({ totalUnitsSold, totalCustomers, totalHours }: VisitorStatsProps) => {
+  const { t, region } = useLocale();
+  const usesMetric = region.usesMetric;
+  
+  // Imperial: 2,800 sq ft coverage per unit, 480 gallons/year per unit
+  // Metric: 260 m² coverage per unit, 1,825 liters/year per unit (5L/day)
   const sqFtProtected = totalUnitsSold * 2800;
+  const sqMProtected = totalUnitsSold * 260;
   const gallonsStructured = totalUnitsSold * 480;
+  const litersStructured = totalUnitsSold * 1825; // 5L/day * 365 days
+
+  // Format values based on unit system
+  const areaValue = usesMetric 
+    ? (sqMProtected / 1000000).toFixed(1) 
+    : (sqFtProtected / 1000000).toFixed(1);
+  const areaLabel = usesMetric ? t.sqMProtected : t.sqFtProtected;
+  const areaNote = usesMetric ? t.sqMNote : t.sqFtNote;
+  
+  const waterValue = usesMetric
+    ? (litersStructured / 1000).toFixed(0)
+    : (gallonsStructured / 1000).toFixed(0);
+  const waterUnit = usesMetric ? t.literUnit : t.gallonUnit;
 
   return (
     <BentoCard
-      badge="Somavedic Impact"
+      badge={t.somavedicImpact}
       className="bg-gradient-to-tr from-emerald-500/10 to-transparent"
     >
       <div className="space-y-1">
         <h3 className="text-4xl font-bold tracking-tighter text-white">
-          {(sqFtProtected / 1000000).toFixed(1)}M+
+          {areaValue}M+
         </h3>
-        <p className="text-md text-white/60 font-medium">Sq. Ft. Protected in 2025</p>
-        <p className="text-[10px] text-white/20 mt-1">*Est. based on avg 2,800 sq. ft. coverage</p>
+        <p className="text-md text-white/60 font-medium">{areaLabel}</p>
+        <p className="text-[10px] text-white/20 mt-1">{areaNote}</p>
       </div>
 
       <div className="mt-8 space-y-1">
         <h3 className="text-4xl font-bold tracking-tighter text-white">
-          {(gallonsStructured / 1000).toFixed(0)}k <span className="text-2xl text-white/20">Gal</span>
+          {waterValue}k <span className="text-2xl text-white/20">{waterUnit}</span>
         </h3>
-        <p className="text-md text-white/60 font-medium">Water Structured in 2025</p>
-        <p className="text-[10px] text-white/20 mt-1">*Est. based on 5L daily usage per unit</p>
+        <p className="text-md text-white/60 font-medium">{t.waterStructured}</p>
+        <p className="text-[10px] text-white/20 mt-1">{t.waterNote}</p>
       </div>
 
       <div className="mt-8 space-y-1">
         <h3 className="text-4xl font-bold tracking-tighter text-white">
-          {totalCustomers.toLocaleString()}
+          {totalHours.toLocaleString()}
         </h3>
-        <p className="text-md text-white/60 font-medium">People Sleeping Better in 2025</p>
-        <p className="text-[10px] text-white/20 mt-1">*Based on new customers joined</p>
+        <p className="text-md text-white/60 font-medium">{t.totalHoursHarmony}</p>
+      </div>
+
+      <div className="mt-8 space-y-1">
+        <h3 className="text-4xl font-bold tracking-tighter text-white">
+          120
+        </h3>
+        <p className="text-md text-white/60 font-medium">{t.giftedSomavedics}</p>
       </div>
     </BentoCard>
   );

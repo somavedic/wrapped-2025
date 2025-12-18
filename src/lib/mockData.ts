@@ -2,8 +2,8 @@ export const MOCK_DATA = {
   year: 2025,
   globalReach: {
     totalCountries: 62,
-    topRegions: ["Europe", "North America", "Japan", "Australia"],
-    newMarkets: ["Brazil", "South Korea"],
+    topRegions: ["Europe", "North America", "Australia", "Asia"],
+    newMarkets: ["Brazil", "South Korea", "China", "Taiwan", "Indonesia", "Hong Kong"],
   },
   products: {
     topModel: "Amber",
