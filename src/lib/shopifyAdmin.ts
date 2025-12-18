@@ -1,4 +1,6 @@
-export async function fetchAdminShopifyStats() {
+import { unstable_cache } from 'next/cache';
+
+async function fetchShopifyStatsInternal() {
   const domain = process.env.SHOPIFY_STORE_DOMAIN;
   const adminToken = process.env.SHOPIFY_ADMIN_ACCESS_TOKEN;
 
@@ -26,6 +28,7 @@ export async function fetchAdminShopifyStats() {
                       id
                       title
                       handle
+                      productType
                       images(first: 1) {
                         edges {
                           node {
@@ -80,7 +83,34 @@ export async function fetchAdminShopifyStats() {
     }
     
     // Aggregate Product Sales
-    const productSales: Record<string, { title: string; quantity: number; image: string; handle: string }> = {};
+    const productSales: Record<string, { title: string; quantity: number; image: string; handle: string; category: 'somavedic' | 'accessory' }> = {};
+
+    // Known accessory keywords (products with these in title/handle are accessories)
+    const ACCESSORY_KEYWORDS = [
+      'stand', 'plate', 'coaster', 'book', 'pendant', 'bracelet', 
+      'necklace', 'jewelry', 'accessory', 'bundle', 'gift card',
+      'protection card', 'card holder', 'charging', 'case'
+    ];
+
+    // Helper to determine category based on productType and title
+    const getProductCategory = (productType: string, title: string, handle: string): 'somavedic' | 'accessory' => {
+      const titleLower = title.toLowerCase();
+      const handleLower = handle.toLowerCase();
+      const typeLower = productType?.toLowerCase() || '';
+      
+      // Check if productType is explicitly "Accessory" or similar
+      if (typeLower.includes('accessor')) return 'accessory';
+      
+      // Check if title/handle contains accessory keywords
+      const isAccessory = ACCESSORY_KEYWORDS.some(keyword => 
+        titleLower.includes(keyword) || handleLower.includes(keyword)
+      );
+      
+      if (isAccessory) return 'accessory';
+      
+      // Default: assume it's a Somavedic device
+      return 'somavedic';
+    };
 
     allOrders.forEach((order: any) => {
       order.node.lineItems.edges.forEach((item: any) => {
@@ -89,6 +119,7 @@ export async function fetchAdminShopifyStats() {
         const title = product?.title || item.node.title;
         const id = product?.id || item.node.title; // simple fallback key
         const image = product?.images?.edges[0]?.node?.url || "";
+        const productType = product?.productType || "";
 
         if (!productSales[id]) {
           productSales[id] = {
@@ -96,6 +127,7 @@ export async function fetchAdminShopifyStats() {
             quantity: 0,
             image,
             handle: product?.handle || "",
+            category: getProductCategory(productType, title, product?.handle || ""),
           };
         }
         productSales[id].quantity += item.node.quantity;
@@ -148,8 +180,14 @@ export async function fetchAdminShopifyStats() {
       console.error("Failed to fetch customer count:", e);
     }
 
+    // Separate into Somavedics and Accessories
+    const topSomavedics = sortedProducts.filter(p => p.category === 'somavedic').slice(0, 6);
+    const topAccessories = sortedProducts.filter(p => p.category === 'accessory').slice(0, 4);
+
     return {
-      topProducts: sortedProducts.slice(0, 10), // Increased to 10
+      topProducts: sortedProducts.slice(0, 10), // Keep for backward compatibility
+      topSomavedics,
+      topAccessories,
       totalVisits,
       totalCustomers,
       totalOrders: totalOrderCount, // Use the real total count
@@ -161,3 +199,10 @@ export async function fetchAdminShopifyStats() {
     return null;
   }
 }
+
+// Cache the expensive Shopify API calls for 1 hour
+export const fetchAdminShopifyStats = unstable_cache(
+  fetchShopifyStatsInternal,
+  ['shopify-admin-stats'],
+  { revalidate: 3600 } // 1 hour
+);

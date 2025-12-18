@@ -44,7 +44,8 @@ export default async function Home() {
           product={bestSeller}
         />
         <TopProductsList 
-          products={stats?.topProducts || []} 
+          somavedics={stats?.topSomavedics || []} 
+          accessories={stats?.topAccessories || []}
         />
         <VisitorStats 
           totalUnitsSold={totalUnits}
