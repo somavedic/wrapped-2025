@@ -9,6 +9,7 @@ import { TopProductsList } from "@/components/TopProductsList";
 import { VisitorStats } from "@/components/VisitorStats";
 import { RegionSwitcher } from "@/components/RegionSwitcher";
 import { useLocale } from "@/components/LocaleContext";
+import { SomaedicLogo } from "@/components/SomaedicLogo";
 
 interface PageContentProps {
   stats: {
@@ -35,15 +36,11 @@ export function PageContent({ stats, mockData }: PageContentProps) {
   const harmonyHours = totalUnits > 0 ? totalUnits * 24 * 365 : 2450000;
 
   return (
-    <main className="min-h-screen py-20 px-4 md:px-12 bg-[linear-gradient(90deg,#012169,#751475)]">
+    <main className="min-h-screen py-20 md:px-12 bg-[linear-gradient(90deg,#012169,#751475)]">
       {/* Header section */}
       <div className="max-w-7xl mx-auto mb-16 px-4 md:px-8">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
-          <img 
-            src="/somavedic-logo.png" 
-            alt="Somavedic" 
-            className="h-8 md:h-10"
-          />
+        <div className="flex flex-row items-center justify-between gap-4 mb-8">
+          <SomaedicLogo className="h-8 md:h-10 w-auto" />
           <RegionSwitcher />
         </div>
         <span className="text-somavedic-amber font-bold tracking-[0.3em] uppercase text-xs mb-4 block">
@@ -84,7 +81,7 @@ export function PageContent({ stats, mockData }: PageContentProps) {
       </BentoGrid>
 
       {/* Footer / CTA */}
-      <div className="max-w-7xl mx-auto mt-20 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 px-4">
+      <div className="max-w-7xl mx-auto mt-20 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 md:px-4">
         <div className="flex items-center gap-4">
            <img src="/somavedic-symbol.png" alt="Somavedic" className="w-10 h-10" />
            <span className="text-white tracking-tight">Somavedic 2025</span>
