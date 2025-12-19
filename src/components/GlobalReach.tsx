@@ -20,7 +20,10 @@ export const GlobalReach = ({ countries, topRegions }: GlobalReachProps) => {
       description={t.harmonizingSpaces}
       className="md:col-span-2 lg:col-span-2 overflow-hidden relative min-h-[400px] md:min-h-full"
     >
-      <div className="absolute -right-24 -bottom-24 md:-right-20 md:-bottom-20 w-[500px] h-[500px] md:w-[600px] md:h-[600px] opacity-40 pointer-events-none md:pointer-events-auto mix-blend-screen">
+      <div 
+        className="absolute -right-24 -bottom-24 md:-right-20 md:-bottom-20 w-[500px] h-[500px] md:w-[600px] md:h-[600px] pointer-events-none md:pointer-events-auto mix-blend-lighten"
+        style={{ isolation: 'isolate' }}
+      >
          <CobeGlobe />
       </div>
       

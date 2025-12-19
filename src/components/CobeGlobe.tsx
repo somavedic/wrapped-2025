@@ -39,11 +39,11 @@ export function CobeGlobe() {
       dark: 1,
       diffuse: 1.2,
       mapSamples: 16000,
-      mapBrightness: 6,
-      baseColor: [0.3, 0.3, 0.3],
+      mapBrightness: 12,
+      baseColor: [0.1, 0.1, 0.2], // Dark purple base to blend with lightening
       markerColor: [1, 0.4, 0.6], // Pinkish
-      glowColor: [1, 1, 1],
-      opacity: 1, // Optional opacity
+      glowColor: [0.7, 0.4, 1], // Purple glow
+      opacity: 1,
       markers: [
         // North America
         { location: [37.7595, -122.4367], size: 0.03 }, // SF
@@ -102,7 +102,7 @@ export function CobeGlobe() {
 
   return (
     <div className="w-full h-full flex items-center justify-center relative">
-       <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#050505] via-transparent to-transparent pointer-events-none" />
+       <div className="absolute inset-0 z-10 pointer-events-none" />
        <canvas
         ref={canvasRef}
         onPointerDown={(e) => {
