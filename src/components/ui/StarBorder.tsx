@@ -28,9 +28,9 @@ export const StarBorder = ({
       {...props}
     >
       <div
-        className="absolute inset-0 w-[300%] h-[100%] opacity-70 animate-star-movement -z-10"
+        className="absolute left-[50%] top-[50%] w-[600%] aspect-square opacity-70 animate-star-movement -z-10"
         style={{
-          background: `radial-gradient(circle, ${color}, transparent 10%)`,
+          background: `conic-gradient(from 0deg, transparent 0 340deg, ${color} 360deg)`,
           animationDuration: speed,
         }}
       />

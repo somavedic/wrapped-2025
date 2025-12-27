@@ -52,21 +52,21 @@ body {
   }
 
   .animate-star-movement {
-    animation: star-movement 6s linear infinite alternate;
+    animation: star-movement 6s linear infinite;
   }
 
   .animate-spin-slow {
-    animation: spin 8s linear infinite;
+    animation: spin 30s linear infinite;
   }
   
   .animate-spin-reverse-slower {
-    animation: spin 12s linear infinite reverse;
+    animation: spin 30s linear infinite reverse;
   }
 }
 
 @keyframes star-movement {
   0% { transform: translate(-50%, -50%) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(180deg); }
+  100% { transform: translate(-50%, -50%) rotate(1turn); }
 }
 
 @keyframes spin {

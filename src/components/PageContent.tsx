@@ -1,5 +1,7 @@
 "use client";
 
+import React from "react";
+
 import { BentoGrid } from "@/components/BentoGrid";
 import { GlobalReach } from "@/components/GlobalReach";
 import { ImpactCounter } from "@/components/ImpactCounter";
@@ -36,6 +38,38 @@ export function PageContent({ stats, mockData }: PageContentProps) {
   const bestSeller = stats?.topProducts[0] || null;
   const totalUnits = stats?.totalUnitsSold || 0;
   const harmonyHours = totalUnits > 0 ? totalUnits * 24 * 365 : 2450000;
+
+  const [isCopied, setIsCopied] = React.useState(false);
+
+  const handleShare = async () => {
+    const shareData = {
+      title: t.wrapped + ' 2025',
+      text: t.heroDescription,
+      url: window.location.href,
+    };
+
+    // Try native share first
+    if (typeof navigator.share !== 'undefined') {
+      try {
+        await navigator.share(shareData);
+      } catch (err) {
+        // If user cancelled, do nothing. We don't fallback to clipboard here
+        // because the async dialog causes loss of focus/activation, 
+        // leading to 'Document is not focused' errors.
+        console.log('Share cancelled or failed:', err);
+      }
+      return; 
+    }
+
+    // Fallback to clipboard (only if native share is unavailable)
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy link:', err);
+    }
+  };
 
   return (
     <main className="min-h-screen py-20 md:px-12 bg-[linear-gradient(90deg,#012169,#751475)]">
@@ -90,8 +124,11 @@ export function PageContent({ stats, mockData }: PageContentProps) {
            <img src="/somavedic-symbol.png" alt="Somavedic" className="w-10 h-10" />
            <span className="text-white tracking-tight">Somavedic 2025</span>
         </div>
-        <button className="px-8 py-3 bg-white text-black font-bold rounded-full hover:scale-105 transition-transform">
-          {t.shareWithFriend}
+        <button 
+          onClick={handleShare}
+          className="px-8 py-3 bg-white text-black font-bold rounded-full hover:scale-105 transition-all active:scale-95"
+        >
+          {isCopied ? t.linkCopied : t.shareWithFriend}
         </button>
       </div>
     </main>

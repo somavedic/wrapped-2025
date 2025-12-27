@@ -80,9 +80,13 @@ export interface Translations {
   futureDeviceSubtitle: string;
   emailPlaceholder: string;
   notifyMe: string;
+  formSubmitting: string;
+  formSuccess: string;
+  formError: string;
   
   // Footer
   shareWithFriend: string;
+  linkCopied: string;
 }
 
 const en: Translations = {
@@ -204,9 +208,13 @@ const en: Translations = {
   futureDeviceSubtitle: 'Q2 2026. Be the first to know.',
   emailPlaceholder: 'Enter your email',
   notifyMe: 'Notify Me',
+  formSubmitting: 'Sending...',
+  formSuccess: 'Subscribed!',
+  formError: 'Something went wrong. Please try again.',
   
   // Footer
   shareWithFriend: 'Share With A Friend',
+  linkCopied: 'Link Copied!',
 };
 
 const de: Translations = {
@@ -328,9 +336,13 @@ const de: Translations = {
   futureDeviceSubtitle: 'Q2 2026. Erfahren Sie es als Erster.',
   emailPlaceholder: 'Geben Sie Ihre E-Mail ein',
   notifyMe: 'Benachrichtigen',
+  formSubmitting: 'Senden...',
+  formSuccess: 'Angemeldet!',
+  formError: 'Etwas ist schief gelaufen. Bitte versuchen Sie es erneut.',
   
   // Footer
   shareWithFriend: 'Mit Freunden teilen',
+  linkCopied: 'Link kopiert!',
 };
 
 const cs: Translations = {
@@ -428,13 +440,13 @@ const cs: Translations = {
   topPerformers: 'Nejúspěšnější',
   mostPopularProducts: 'Nejoblíbenější produkty',
   popularProductsDesc: 'Modely, které v roce 2025 přinesly harmonii do nejvíce domovů.',
-  topSomavedics: 'Top 6 Somavedic',
+  topSomavedics: 'Top 6 Somavediců',
   topAccessories: 'Top 4 příslušenství',
   
   // SalesChart
   yearlyTrends: 'Roční trendy',
   momentum: 'Dynamika',
-  momentumDesc: 'Rok 2025 zaznamenal bezprecedentní růst adopce Somavedic.',
+  momentumDesc: 'Rok 2025 zaznamenal bezprecedentní růst adopce Somavedicu.',
   yoy: 'meziročně',
   
   // CustomerMetrics
@@ -452,9 +464,13 @@ const cs: Translations = {
   futureDeviceSubtitle: 'Q2 2026. Buďte první, kdo se to dozví.',
   emailPlaceholder: 'Zadejte svůj e-mail',
   notifyMe: 'Upozornit mě',
+  formSubmitting: 'Odesílání...',
+  formSuccess: 'Přihlášeno!',
+  formError: 'Něco se pokazilo. Zkuste to prosím znovu.',
   
   // Footer
   shareWithFriend: 'Sdílet s přítelem',
+  linkCopied: 'Odkaz zkopírován!',
 };
 
 export const translations: Record<LanguageCode, Translations> = {

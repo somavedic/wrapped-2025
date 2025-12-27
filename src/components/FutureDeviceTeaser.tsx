@@ -1,6 +1,7 @@
 "use client";
 
 import { useLocale } from "@/components/LocaleContext";
+import { cn } from "@/lib/utils";
 import { LightRays } from "@/components/ui/LightRays";
 import { StarBorder } from "@/components/ui/StarBorder";
 import { TextType } from "@/components/ui/TextType";
@@ -11,20 +12,41 @@ import { useState } from "react";
 import { BentoCard } from "./BentoGrid";
 
 export const FutureDeviceTeaser = () => {
-  const { t } = useLocale();
+  const { t, region } = useLocale();
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
-      console.log("Subscribing email to Future Device Q2 2026 list:", email);
-      // In a real implementation, you would send this to your Klaviyo API
-      // const listId = process.env.NEXT_PUBLIC_KLAVIYO_LIST_ID;
-      // ... submit logic
-      setIsSubmitted(true);
-      setEmail("");
-      setTimeout(() => setIsSubmitted(false), 3000);
+    if (email && !isSubmitting) {
+      setIsSubmitting(true);
+      setErrorMessage("");
+      
+      try {
+        const response = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ 
+            email, 
+            region: region.code 
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error('Subscription failed');
+        }
+
+        setIsSubmitted(true);
+        setEmail("");
+        setTimeout(() => setIsSubmitted(false), 5000);
+      } catch (error) {
+        console.error(error);
+        setErrorMessage(t.formError);
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -79,21 +101,36 @@ export const FutureDeviceTeaser = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={t.emailPlaceholder}
-                className="w-full bg-white/5 border border-white/10 rounded-full px-6 py-4 text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-somavedic-amber/50 transition-all text-center"
+                disabled={isSubmitting || isSubmitted}
+                className="w-full bg-white/5 border border-white/10 rounded-[20px] px-6 py-4 text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-somavedic-amber/50 transition-all text-center disabled:opacity-50 disabled:cursor-not-allowed"
                 required
               />
             </div>
             
+            {errorMessage && (
+              <p className="w-full text-center text-red-400 text-sm font-medium animate-in fade-in slide-in-from-top-1">
+                {errorMessage}
+              </p>
+            )}
+
             <StarBorder 
               as="button" 
               type="submit" 
+              disabled={isSubmitting || isSubmitted}
               color="#e137e1" 
               speed="3s"
-              className="w-full"
+              className={cn(
+                "w-full transition-all duration-300 cursor-pointer hover:scale-[1.02] active:scale-[0.98]",
+                (isSubmitting || isSubmitted) && "opacity-80 cursor-not-allowed hover:scale-100"
+              )}
             >
               <span className="flex items-center justify-center gap-2 font-bold tracking-wide uppercase">
                 {isSubmitted ? (
-                  "Subscribed!"
+                  <span className="text-green-400 flex items-center gap-2">
+                    {t.formSuccess} <span className="text-xl">✓</span>
+                  </span>
+                ) : isSubmitting ? (
+                  t.formSubmitting
                 ) : (
                   <>
                     {t.notifyMe} <Send className="w-4 h-4 ml-1" />

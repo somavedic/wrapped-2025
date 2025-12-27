@@ -14,7 +14,7 @@ export const CustomerMetrics = () => {
         badge={t.customerMetricsBadge}
         className="bg-gradient-to-br from-somavedic-amber/10 to-transparent"
       >
-        <div className="space-y-1">
+        <div className="flex flex-col gap-2">
           <div className="flex items-center gap-1.5 text-somavedic-amber">
             <Smile className="w-3.5 h-3.5" />
             <span className="text-xs font-bold uppercase tracking-wider">{t.customerSatisfaction}</span>
@@ -29,7 +29,7 @@ export const CustomerMetrics = () => {
         badge={t.customerMetricsBadge}
         className="bg-gradient-to-br from-somavedic-amber/10 to-transparent"
       >
-        <div className="space-y-1">
+        <div className="flex flex-col gap-2">
           <div className="flex items-center gap-1.5 text-somavedic-amber">
             <RotateCcw className="w-3.5 h-3.5" />
             <span className="text-xs font-bold uppercase tracking-wider">{t.returns}</span>
@@ -44,7 +44,7 @@ export const CustomerMetrics = () => {
         badge={t.customerMetricsBadge}
         className="bg-gradient-to-br from-somavedic-amber/10 to-transparent"
       >
-        <div className="space-y-1">
+        <div className="flex flex-col gap-2">
           <div className="flex items-center gap-1.5 text-somavedic-amber">
             <HeadphonesIcon className="w-3.5 h-3.5" />
             <span className="text-xs font-bold uppercase tracking-wider">{t.supportTickets}</span>
