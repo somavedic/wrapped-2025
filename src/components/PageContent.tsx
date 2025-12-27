@@ -8,6 +8,8 @@ import { SalesChart } from "@/components/SalesChart";
 import { TopProductsList } from "@/components/TopProductsList";
 import { VisitorStats } from "@/components/VisitorStats";
 import { RegionSwitcher } from "@/components/RegionSwitcher";
+import { CustomerMetrics } from "@/components/CustomerMetrics";
+import { FutureDeviceTeaser } from "@/components/FutureDeviceTeaser";
 import { useLocale } from "@/components/LocaleContext";
 import { SomaedicLogo } from "@/components/SomaedicLogo";
 
@@ -78,6 +80,8 @@ export function PageContent({ stats, mockData }: PageContentProps) {
         <SalesChart 
           data={mockData.salesTrends} 
         />
+        <CustomerMetrics />
+        <FutureDeviceTeaser />
       </BentoGrid>
 
       {/* Footer / CTA */}

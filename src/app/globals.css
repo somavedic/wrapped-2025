@@ -50,4 +50,26 @@ body {
   .text-glow-amber {
     text-shadow: 0 0 20px rgba(255, 184, 0, 0.3);
   }
+
+  .animate-star-movement {
+    animation: star-movement 6s linear infinite alternate;
+  }
+
+  .animate-spin-slow {
+    animation: spin 8s linear infinite;
+  }
+  
+  .animate-spin-reverse-slower {
+    animation: spin 12s linear infinite reverse;
+  }
+}
+
+@keyframes star-movement {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(180deg); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }

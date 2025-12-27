@@ -65,6 +65,22 @@ export interface Translations {
   momentumDesc: string;
   yoy: string;
   
+  // CustomerMetrics
+  customerMetricsBadge: string;
+  customerSatisfaction: string;
+  customerSatisfactionDesc: string;
+  returns: string;
+  returnsDesc: string;
+  supportTickets: string;
+  supportTicketsDesc: string;
+  day: string;
+
+  // FutureDevice
+  futureDeviceTitle: string;
+  futureDeviceSubtitle: string;
+  emailPlaceholder: string;
+  notifyMe: string;
+  
   // Footer
   shareWithFriend: string;
 }
@@ -172,6 +188,22 @@ const en: Translations = {
   momentum: 'Momentum',
   momentumDesc: '2025 saw unprecedented growth in Somavedic adoption.',
   yoy: 'YoY',
+  
+  // CustomerMetrics
+  customerMetricsBadge: 'Customer Experience',
+  customerSatisfaction: 'Customer Satisfaction',
+  customerSatisfactionDesc: 'Of customers rate us 5 stars',
+  returns: 'Returns',
+  returnsDesc: 'Return rate across all products',
+  supportTickets: 'Support Response',
+  supportTicketsDesc: 'Average time to resolve tickets by a real human',
+  day: 'day',
+
+  // FutureDevice
+  futureDeviceTitle: 'The Future of Harmony',
+  futureDeviceSubtitle: 'Q2 2026. Be the first to know.',
+  emailPlaceholder: 'Enter your email',
+  notifyMe: 'Notify Me',
   
   // Footer
   shareWithFriend: 'Share With A Friend',
@@ -281,6 +313,22 @@ const de: Translations = {
   momentumDesc: '2025 verzeichnete ein beispielloses Wachstum bei der Somavedic-Nutzung.',
   yoy: 'im Jahresvergleich',
   
+  // CustomerMetrics
+  customerMetricsBadge: 'Kundenerfahrung',
+  customerSatisfaction: 'Kundenzufriedenheit',
+  customerSatisfactionDesc: 'Der Kunden bewerten uns mit 5 Sternen',
+  returns: 'Rücksendungen',
+  returnsDesc: 'Rücksendequote bei allen Produkten',
+  supportTickets: 'Support-Reaktionszeit',
+  supportTicketsDesc: 'Durchschnittliche Zeit zur Lösung von Tickets durch einen echten Menschen',
+  day: 'Tag',
+
+  // FutureDevice
+  futureDeviceTitle: 'Die Zukunft der Harmonie',
+  futureDeviceSubtitle: 'Q2 2026. Erfahren Sie es als Erster.',
+  emailPlaceholder: 'Geben Sie Ihre E-Mail ein',
+  notifyMe: 'Benachrichtigen',
+  
   // Footer
   shareWithFriend: 'Mit Freunden teilen',
 };
@@ -388,6 +436,22 @@ const cs: Translations = {
   momentum: 'Dynamika',
   momentumDesc: 'Rok 2025 zaznamenal bezprecedentní růst adopce Somavedic.',
   yoy: 'meziročně',
+  
+  // CustomerMetrics
+  customerMetricsBadge: 'Zákaznická zkušenost',
+  customerSatisfaction: 'Spokojenost zákazníků',
+  customerSatisfactionDesc: 'Zákazníků nás hodnotí 5 hvězdičkami',
+  returns: 'Vrácení zboží',
+  returnsDesc: 'Míra vrácení u všech produktů',
+  supportTickets: 'Doba odezvy podpory',
+  supportTicketsDesc: 'Průměrná doba vyřešení požadavků skutečným člověkem',
+  day: 'den',
+
+  // FutureDevice
+  futureDeviceTitle: 'Budoucnost harmonie',
+  futureDeviceSubtitle: 'Q2 2026. Buďte první, kdo se to dozví.',
+  emailPlaceholder: 'Zadejte svůj e-mail',
+  notifyMe: 'Upozornit mě',
   
   // Footer
   shareWithFriend: 'Sdílet s přítelem',
