@@ -5,11 +5,11 @@ import { cn } from "@/lib/utils";
 import { LightRays } from "@/components/ui/LightRays";
 import { StarBorder } from "@/components/ui/StarBorder";
 import { TextType } from "@/components/ui/TextType";
+import { RegionSwitcher } from "@/components/RegionSwitcher";
+import { SomaedicLogo } from "@/components/SomaedicLogo";
 import { motion } from "framer-motion";
 import { Send } from "lucide-react";
-import Image from "next/image";
 import { useState } from "react";
-import { BentoCard } from "./BentoGrid";
 
 export const FutureDeviceTeaser = () => {
   const { t, region } = useLocale();
@@ -51,97 +51,119 @@ export const FutureDeviceTeaser = () => {
   };
 
   return (
-    <BentoCard
-      title="" // Custom title mapping inside
-      className="md:col-span-2 lg:col-span-3 min-h-[500px] relative overflow-hidden group border-somavedic-amber/20"
-    >
-      {/* Background Animation */}
-      <LightRays className="opacity-50 group-hover:opacity-75 transition-opacity duration-700" />
+    <section className="relative w-full min-h-[auto] md:h-[80vh] overflow-hidden">
+      {/* Subtle background gradient */}
+      <div className="absolute inset-0 bg-[#0b030d] z-0" />
       
-      <div className="relative z-10 flex flex-col items-center justify-center h-full gap-8 px-4 md:px-8 py-12 w-full text-center">
-        
-        {/* 1) Title */}
-        <div className="space-y-4 max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-7xl font-bold tracking-tighter text-white">
-            <TextType 
-              text={t.futureDeviceTitle} 
-              className="block min-h-[1.2em]" 
-              speed={80}
-            />
-          </h2>
-          <p className="text-xl md:text-2xl text-somavedic-amber font-light tracking-wide uppercase">
-            {t.futureDeviceSubtitle}
-          </p>
+      {/* Ambient glow effects */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-somavedic-amber/15 blur-[150px] rounded-full animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-[#e137e1]/10 blur-[120px] rounded-full" />
+      </div>
+
+      {/* Background Animation */}
+      <LightRays className="opacity-20 z-0" />
+      
+      {/* Content Container */}
+      <div className="relative z-10 h-full">
+        {/* Logo and Region Switcher Header */}
+        <div className="absolute top-0 left-0 right-0 z-20 px-4 md:px-12 py-6 md:py-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex flex-row items-center justify-between gap-4">
+              <SomaedicLogo className="h-8 md:h-10 w-auto" />
+              <RegionSwitcher />
+            </div>
+          </div>
         </div>
 
-        {/* 2) Full Container Width Image */}
-        <div className="w-full relative flex items-center justify-center my-4">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.3 }}
-            className="relative w-full aspect-video md:aspect-[21/9] max-w-6xl"
+        {/* Main Layout - Contained form + Edge-to-edge image */}
+        <div className="h-full flex flex-col lg:flex-row pt-20 lg:pt-0">
+          {/* Left side - Form Container (aligned with max-w-7xl) */}
+          <div className="lg:w-1/2 flex justify-center lg:justify-end order-2 lg:order-1">
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="w-full max-w-[640px] flex flex-col items-center lg:items-start justify-center text-center lg:text-left gap-6 px-6 md:px-12 xl:px-0 py-10 lg:py-0"
+            >
+              {/* Title */}
+              <div className="space-y-4">
+                <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white">
+                  <TextType 
+                    text={t.futureDeviceTitle} 
+                    className="block min-h-[1.2em]" 
+                    speed={80}
+                  />
+                </h2>
+                <p className="text-lg md:text-2xl text-somavedic-amber font-light tracking-widest uppercase">
+                  {t.futureDeviceSubtitle}
+                </p>
+              </div>
+
+              {/* Subscription Form */}
+              <div className="w-full max-w-md">
+                <form onSubmit={handleSubmit} className="w-full space-y-4">
+                  <div className="relative">
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder={t.emailPlaceholder}
+                      disabled={isSubmitting || isSubmitted}
+                      className="w-full bg-white/10 backdrop-blur-sm border border-white/20 rounded-[20px] px-6 py-4 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-somavedic-amber/50 focus:border-somavedic-amber/30 transition-all text-center lg:text-left disabled:opacity-50 disabled:cursor-not-allowed"
+                      required
+                    />
+                  </div>
+                  
+                  {errorMessage && (
+                    <p className="w-full text-center lg:text-left text-red-400 text-sm font-medium animate-in fade-in slide-in-from-top-1">
+                      {errorMessage}
+                    </p>
+                  )}
+
+                  <StarBorder 
+                    as="button" 
+                    type="submit" 
+                    disabled={isSubmitting || isSubmitted}
+                    color="#e137e1" 
+                    speed="3s"
+                    className={cn(
+                      "w-full transition-all duration-300 cursor-pointer hover:scale-[1.02] active:scale-[0.98]",
+                      (isSubmitting || isSubmitted) && "opacity-80 cursor-not-allowed hover:scale-100"
+                    )}
+                  >
+                    <span className="flex items-center justify-center gap-2 font-bold tracking-wide uppercase">
+                      {isSubmitted ? (
+                        <span className="text-green-400 flex items-center gap-2">
+                          {t.formSuccess} <span className="text-xl">✓</span>
+                        </span>
+                      ) : isSubmitting ? (
+                        t.formSubmitting
+                      ) : (
+                        <>
+                          {t.notifyMe} <Send className="w-4 h-4 ml-1" />
+                        </>
+                      )}
+                    </span>
+                  </StarBorder>
+                </form>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Right side - Product Image (extends to edge) */}
+          <motion.div 
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="lg:w-1/2 relative order-1 lg:order-2 min-h-[280px] lg:h-full overflow-hidden bg-no-repeat bg-[length:100%_auto] lg:bg-[length:auto_85%] bg-center lg:bg-[left_center]"
+            style={{
+              backgroundImage: 'url(/elaura-mockup-v3-optimised.png)',
+            }}
           >
-            <div className="absolute inset-0 bg-somavedic-amber/10 blur-[80px] rounded-full opacity-30 animate-pulse" />
-            <Image
-              src="/elaura-mockup-optimised.png"
-              alt="Future Somavedic Device Blueprint"
-              fill
-              className="object-contain drop-shadow-[0_0_25px_rgba(225,55,225,0.4)]"
-            />
           </motion.div>
         </div>
-
-        {/* 3) Subscription Form */}
-        <div className="w-full max-w-md mx-auto">
-          <form onSubmit={handleSubmit} className="w-full space-y-4">
-            <div className="relative">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder={t.emailPlaceholder}
-                disabled={isSubmitting || isSubmitted}
-                className="w-full bg-white/5 border border-white/10 rounded-[20px] px-6 py-4 text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-somavedic-amber/50 transition-all text-center disabled:opacity-50 disabled:cursor-not-allowed"
-                required
-              />
-            </div>
-            
-            {errorMessage && (
-              <p className="w-full text-center text-red-400 text-sm font-medium animate-in fade-in slide-in-from-top-1">
-                {errorMessage}
-              </p>
-            )}
-
-            <StarBorder 
-              as="button" 
-              type="submit" 
-              disabled={isSubmitting || isSubmitted}
-              color="#e137e1" 
-              speed="3s"
-              className={cn(
-                "w-full transition-all duration-300 cursor-pointer hover:scale-[1.02] active:scale-[0.98]",
-                (isSubmitting || isSubmitted) && "opacity-80 cursor-not-allowed hover:scale-100"
-              )}
-            >
-              <span className="flex items-center justify-center gap-2 font-bold tracking-wide uppercase">
-                {isSubmitted ? (
-                  <span className="text-green-400 flex items-center gap-2">
-                    {t.formSuccess} <span className="text-xl">✓</span>
-                  </span>
-                ) : isSubmitting ? (
-                  t.formSubmitting
-                ) : (
-                  <>
-                    {t.notifyMe} <Send className="w-4 h-4 ml-1" />
-                  </>
-                )}
-              </span>
-            </StarBorder>
-          </form>
-        </div>
-
       </div>
-    </BentoCard>
+    </section>
   );
 };

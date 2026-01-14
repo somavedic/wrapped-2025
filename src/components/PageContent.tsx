@@ -72,13 +72,14 @@ export function PageContent({ stats, mockData }: PageContentProps) {
   };
 
   return (
-    <main className="min-h-screen py-20 md:px-12 bg-[linear-gradient(90deg,#012169,#751475)]">
+    <main className="min-h-screen md:px-12 bg-[#140517] overflow-x-hidden">
+      {/* New Device Teaser - Full Viewport Section (includes logo and region switcher) */}
+      <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
+        <FutureDeviceTeaser />
+      </div>
+
       {/* Header section */}
-      <div className="max-w-7xl mx-auto mb-16 px-4 md:px-8">
-        <div className="flex flex-row items-center justify-between gap-4 mb-8">
-          <SomaedicLogo className="h-8 md:h-10 w-auto" />
-          <RegionSwitcher />
-        </div>
+      <div className="max-w-7xl mx-auto mb-16 px-4 md:px-8 mt-24">
         <span className="text-somavedic-amber font-bold tracking-[0.3em] uppercase text-xs mb-4 block">
           {t.annualOverview}
         </span>
@@ -115,11 +116,10 @@ export function PageContent({ stats, mockData }: PageContentProps) {
           data={mockData.salesTrends} 
         />
         <CustomerMetrics />
-        <FutureDeviceTeaser />
       </BentoGrid>
 
       {/* Footer / CTA */}
-      <div className="max-w-7xl mx-auto mt-20 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 md:px-4">
+      <div className="max-w-7xl mx-auto mt-20 py-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 md:px-4">
         <div className="flex items-center gap-4">
            <img src="/somavedic-symbol.png" alt="Somavedic" className="w-10 h-10" />
            <span className="text-white tracking-tight">Somavedic 2025</span>
