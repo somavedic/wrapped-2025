@@ -6,7 +6,7 @@ import { BentoGrid } from "@/components/BentoGrid";
 import { GlobalReach } from "@/components/GlobalReach";
 import { ImpactCounter } from "@/components/ImpactCounter";
 import { TopProduct } from "@/components/TopProduct";
-import { SalesChart } from "@/components/SalesChart";
+import { CustomerTestimonial } from "@/components/CustomerTestimonial";
 import { TopProductsList } from "@/components/TopProductsList";
 import { VisitorStats } from "@/components/VisitorStats";
 import { RegionSwitcher } from "@/components/RegionSwitcher";
@@ -35,7 +35,12 @@ interface PageContentProps {
 export function PageContent({ stats, mockData }: PageContentProps) {
   const { t } = useLocale();
   
-  const bestSeller = stats?.topProducts[0] || null;
+  // Find Vedic Gen 2 specifically as the featured product
+  const vedicGen2 = stats?.topProducts.find((p: any) => 
+    p.title.toLowerCase().includes('vedic') && 
+    (p.title.toLowerCase().includes('gen 2') || p.title.toLowerCase().includes('gen. 2') || p.title.toLowerCase().includes('generation 2'))
+  );
+  const bestSeller = vedicGen2 || stats?.topProducts[0] || null;
   const totalUnits = stats?.totalUnitsSold || 0;
   const harmonyHours = totalUnits > 0 ? totalUnits * 24 * 365 : 2450000;
 
@@ -112,9 +117,7 @@ export function PageContent({ stats, mockData }: PageContentProps) {
         <ImpactCounter 
           totalHours={harmonyHours} 
         />
-        <SalesChart 
-          data={mockData.salesTrends} 
-        />
+        <CustomerTestimonial />
         <CustomerMetrics />
       </BentoGrid>
 

@@ -56,6 +56,11 @@ export function CobeGlobe() {
         { location: [49.2827, -123.1207], size: 0.03 }, // Vancouver
         { location: [39.7392, -104.9903], size: 0.03 }, // Denver
         { location: [30.2672, -97.7431], size: 0.03 }, // Austin
+        { location: [33.4484, -112.0740], size: 0.03 }, // Phoenix
+        { location: [42.3601, -71.0589], size: 0.03 }, // Boston
+        { location: [45.5017, -73.5673], size: 0.03 }, // Montreal
+        { location: [29.7604, -95.3698], size: 0.03 }, // Houston
+        { location: [32.7767, -96.7970], size: 0.03 }, // Dallas
 
         // Europe (Excluding East/Ukraine/Russia)
         { location: [51.5074, -0.1278], size: 0.05 }, // London
@@ -69,16 +74,32 @@ export function CobeGlobe() {
         { location: [47.3769, 8.5417], size: 0.04 }, // Zurich
         { location: [59.3293, 18.0686], size: 0.03 }, // Stockholm
         { location: [48.2082, 16.3738], size: 0.04 }, // Vienna
+        { location: [55.6761, 12.5683], size: 0.03 }, // Copenhagen
+        { location: [59.9139, 10.7522], size: 0.03 }, // Oslo
+        { location: [53.3498, -6.2603], size: 0.03 }, // Dublin
+        { location: [41.3851, 2.1734], size: 0.04 }, // Barcelona
+        { location: [48.1351, 11.5820], size: 0.03 }, // Munich
+        { location: [52.2297, 21.0122], size: 0.03 }, // Warsaw
+        { location: [45.4642, 9.1900], size: 0.03 }, // Milan
+        { location: [50.8503, 4.3517], size: 0.03 }, // Brussels
+        { location: [60.1699, 24.9384], size: 0.03 }, // Helsinki
 
         // Asia / Pacific
         { location: [35.6762, 139.6503], size: 0.05 }, // Tokyo
         { location: [37.5665, 126.9780], size: 0.04 }, // Seoul
         { location: [22.3193, 114.1694], size: 0.04 }, // Hong Kong
         { location: [1.3521, 103.8198], size: 0.03 }, // Singapore
+        { location: [34.6937, 135.5023], size: 0.03 }, // Osaka
+        { location: [25.0330, 121.5654], size: 0.03 }, // Taipei
+        { location: [13.7563, 100.5018], size: 0.03 }, // Bangkok
+        { location: [35.1796, 136.9066], size: 0.03 }, // Nagoya
         
-        // Australia
+        // Australia & Oceania
         { location: [-33.8688, 151.2093], size: 0.04 }, // Sydney
         { location: [-37.8136, 144.9631], size: 0.03 }, // Melbourne
+        { location: [-27.4698, 153.0251], size: 0.03 }, // Brisbane
+        { location: [-36.8485, 174.7633], size: 0.03 }, // Auckland
+        { location: [-31.9505, 115.8605], size: 0.03 }, // Perth
         
         // Middle East 
         { location: [25.2048, 55.2708], size: 0.03 }, // Dubai

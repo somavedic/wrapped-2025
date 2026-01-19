@@ -134,9 +134,20 @@ async function fetchShopifyStatsInternal() {
       });
     });
 
-    // Sort by quantity and filter out 'MonkProtect™'
+    // Helper to check if a product is Vedic Gen 1 (discontinued)
+    const isVedicGen1 = (title: string): boolean => {
+      const titleLower = title.toLowerCase();
+      // If title contains "vedic" but NOT "gen 2", "gen. 2", or "generation 2", it's Gen 1
+      if (titleLower.includes('vedic')) {
+        const hasGen2 = titleLower.includes('gen 2') || titleLower.includes('gen. 2') || titleLower.includes('generation 2');
+        return !hasGen2;
+      }
+      return false;
+    };
+
+    // Sort by quantity and filter out 'MonkProtect™', 'Mystery Gift', 'Power Cable', and 'Vedic Gen 1'
     const sortedProducts = Object.values(productSales)
-      .filter(p => !p.title.includes("MonkProtect") && !p.title.includes("Mystery Gift") && !p.title.includes("Power Cable"))
+      .filter(p => !p.title.includes("MonkProtect") && !p.title.includes("Mystery Gift") && !p.title.includes("Power Cable") && !isVedicGen1(p.title))
       .sort((a, b) => b.quantity - a.quantity);
 
     // Fetch Total Order Count (REST API is faster for count than iterating GraphQL)

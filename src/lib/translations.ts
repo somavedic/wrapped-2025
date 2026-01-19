@@ -3,6 +3,10 @@
 import { LanguageCode } from './locales';
 
 export interface Translations {
+  // Meta tags
+  metaTitle: string;
+  metaDescription: string;
+  
   // Header
   annualOverview: string;
   wrapped: string;
@@ -45,6 +49,7 @@ export interface Translations {
   airQualityDesc: string;
   ionLevels: string;
   ionLevelsDesc: string;
+  seeScience: string;
   
   // TopProduct
   yourFavorite: string;
@@ -59,11 +64,17 @@ export interface Translations {
   topSomavedics: string;
   topAccessories: string;
   
-  // SalesChart
-  yearlyTrends: string;
-  momentum: string;
-  momentumDesc: string;
-  yoy: string;
+  // CustomerTestimonial
+  testimonialBadge: string;
+  testimonialTitle: string;
+  testimonialSubtitle: string;
+  testimonialDate: string;
+  testimonialHeadline: string;
+  testimonialText: string;
+  testimonialAuthor: string;
+  testimonialAuthorInitial: string;
+  testimonialLocation: string;
+  seeReviews: string;
   
   // CustomerMetrics
   customerMetricsBadge: string;
@@ -90,6 +101,10 @@ export interface Translations {
 }
 
 const en: Translations = {
+  // Meta tags
+  metaTitle: 'Join the First Wave - Somavedic Elaura',
+  metaDescription: 'A year of harmony, growth, and global impact. See how Somavedic protected spaces across the world in 2025.',
+  
   // Header
   annualOverview: 'Somavedic Annual Overview',
   wrapped: 'Wrapped',
@@ -166,32 +181,39 @@ const en: Translations = {
   // ImpactCounter
   researchHighlights: 'Research Highlights',
   cellProtection: 'Cell Protection',
-  cellRecoveryDesc: 'Cell recovery from EMF exposure with Medic Amber',
+  cellRecoveryDesc: 'Improved cell recovery',
   inflammation: 'Inflammation',
   inflammationDesc: 'Of users showed reduced inflammation markers',
   airQuality: 'Air Quality',
   airQualityDesc: 'Negative ion concentration increase in tested spaces',
   ionLevels: 'Ion Levels',
   ionLevelsDesc: 'Above typical building ion concentration',
+  seeScience: 'See the science',
   
   // TopProduct
   yourFavorite: 'Your Favorite',
   communityChoice: 'The Community Choice',
-  bestSellingDesc: 'The #1 best-selling model of 2025 - still available in a secret link.',
+  bestSellingDesc: 'The #1 best-selling model of 2025.',
   viewProduct: 'View Product',
   
   // TopProductsList
   topPerformers: 'Top Performers',
   mostPopularProducts: 'Most Popular Products',
   popularProductsDesc: 'The models that brought harmony to the most homes in 2025.',
-  topSomavedics: 'Top 6 Somavedics',
-  topAccessories: 'Top 4 Accessories',
+  topSomavedics: 'Top 4 Somavedics',
+  topAccessories: 'Top 3 Accessories',
   
-  // SalesChart
-  yearlyTrends: 'Yearly Trends',
-  momentum: 'Momentum',
-  momentumDesc: '2025 saw unprecedented growth in Somavedic adoption.',
-  yoy: 'YoY',
+  // CustomerTestimonial
+  testimonialBadge: 'Customer Love',
+  testimonialTitle: 'True Love = Somavedic!',
+  testimonialSubtitle: 'Real stories from our community.',
+  testimonialDate: 'January 18, 2026',
+  testimonialHeadline: 'True Love = Somavedic!',
+  testimonialText: "I wholeheartedly recommend Somavedic. We have Rosalin and Vedic at home, and both create harmony, peace, relaxation, and make us feel great. We also use Vedic to structure our drinking water for the whole family. Anyone considering buying a Somavedic, don't hesitate – just buy it! :-)",
+  testimonialAuthor: 'Zuzana Klinková',
+  testimonialAuthorInitial: 'Z',
+  testimonialLocation: 'Prague, Czech Republic',
+  seeReviews: 'See reviews',
   
   // CustomerMetrics
   customerMetricsBadge: 'Customer Experience',
@@ -204,8 +226,8 @@ const en: Translations = {
   day: 'day',
 
   // FutureDevice
-  futureDeviceTitle: 'The Future of Harmony',
-  futureDeviceSubtitle: 'Q2 2026. Be the first to know.',
+  futureDeviceTitle: 'The New Somavedic Will Be A Blast',
+  futureDeviceSubtitle: 'Q1 2026. Be the first to know.',
   emailPlaceholder: 'Enter your email',
   notifyMe: 'Notify Me',
   formSubmitting: 'Sending...',
@@ -218,6 +240,10 @@ const en: Translations = {
 };
 
 const de: Translations = {
+  // Meta tags
+  metaTitle: 'Join the First Wave - Somavedic Elaura',
+  metaDescription: 'Ein Jahr voller Harmonie, Wachstum und globaler Wirkung. Sehen Sie, wie Somavedic 2025 Räume auf der ganzen Welt geschützt hat.',
+  
   // Header
   annualOverview: 'Somavedic Jahresübersicht',
   wrapped: 'Wrapped',
@@ -294,32 +320,39 @@ const de: Translations = {
   // ImpactCounter
   researchHighlights: 'Forschungsergebnisse',
   cellProtection: 'Zellschutz',
-  cellRecoveryDesc: 'Zellregeneration nach EMF-Exposition mit Medic Amber',
+  cellRecoveryDesc: 'Verbesserte Zellregeneration',
   inflammation: 'Entzündung',
   inflammationDesc: 'Der Nutzer zeigten reduzierte Entzündungsmarker',
   airQuality: 'Luftqualität',
   airQualityDesc: 'Erhöhung der negativen Ionenkonzentration in getesteten Räumen',
   ionLevels: 'Ionenwerte',
   ionLevelsDesc: 'Über der typischen Gebäude-Ionenkonzentration',
+  seeScience: 'Zur Wissenschaft',
   
   // TopProduct
   yourFavorite: 'Ihr Favorit',
   communityChoice: 'Die Wahl der Community',
-  bestSellingDesc: 'Das meistverkaufte Modell 2025 - noch über einen geheimen Link verfügbar.',
+  bestSellingDesc: 'Das meistverkaufte Modell 2025.',
   viewProduct: 'Produkt ansehen',
   
   // TopProductsList
   topPerformers: 'Top-Performer',
   mostPopularProducts: 'Beliebteste Produkte',
   popularProductsDesc: 'Die Modelle, die 2025 die meiste Harmonie in die Häuser brachten.',
-  topSomavedics: 'Top 6 Somavedics',
-  topAccessories: 'Top 4 Zubehör',
+  topSomavedics: 'Top 4 Somavedics',
+  topAccessories: 'Top 3 Zubehör',
   
-  // SalesChart
-  yearlyTrends: 'Jahrestrends',
-  momentum: 'Dynamik',
-  momentumDesc: '2025 verzeichnete ein beispielloses Wachstum bei der Somavedic-Nutzung.',
-  yoy: 'im Jahresvergleich',
+  // CustomerTestimonial
+  testimonialBadge: 'Kundenliebe',
+  testimonialTitle: 'Wahre Liebe = Somavedic!',
+  testimonialSubtitle: 'Echte Geschichten aus unserer Community.',
+  testimonialDate: '18. Januar 2026',
+  testimonialHeadline: 'Wahre Liebe = Somavedic!',
+  testimonialText: 'Ich empfehle Somavedic von ganzem Herzen. Wir haben Rosalin und Vedic zu Hause, und beide schaffen Harmonie, Ruhe, Entspannung und ein tolles Wohlbefinden. Wir nutzen Vedic auch, um unser Trinkwasser für die ganze Familie zu strukturieren. Wer überlegt, sich einen Somavedic zu kaufen – zögert nicht, kauft ihn einfach! :-)',
+  testimonialAuthor: 'Zuzana Klinková',
+  testimonialAuthorInitial: 'Z',
+  testimonialLocation: 'Prag, Tschechische Republik',
+  seeReviews: 'Bewertungen ansehen',
   
   // CustomerMetrics
   customerMetricsBadge: 'Kundenerfahrung',
@@ -332,8 +365,8 @@ const de: Translations = {
   day: 'Tag',
 
   // FutureDevice
-  futureDeviceTitle: 'Die Zukunft der Harmonie',
-  futureDeviceSubtitle: 'Q2 2026. Erfahren Sie es als Erster.',
+  futureDeviceTitle: 'Der neue Somavedic wird der Hammer',
+  futureDeviceSubtitle: 'Q1 2026. Erfahren Sie es als Erster.',
   emailPlaceholder: 'Geben Sie Ihre E-Mail ein',
   notifyMe: 'Benachrichtigen',
   formSubmitting: 'Senden...',
@@ -346,6 +379,10 @@ const de: Translations = {
 };
 
 const cs: Translations = {
+  // Meta tags
+  metaTitle: 'Join the First Wave - Somavedic Elaura',
+  metaDescription: 'Rok plný harmonie, růstu a celosvětového dopadu. Podívejte se, jak Somavedic v roce 2025 chránil prostory po celém světě.',
+  
   // Header
   annualOverview: 'Somavedic Roční přehled',
   wrapped: 'Wrapped',
@@ -422,32 +459,39 @@ const cs: Translations = {
   // ImpactCounter
   researchHighlights: 'Výsledky výzkumu',
   cellProtection: 'Ochrana buněk',
-  cellRecoveryDesc: 'Regenerace buněk po expozici EMF s Medic Amber',
+  cellRecoveryDesc: 'Zlepšená regenerace buněk',
   inflammation: 'Zánět',
   inflammationDesc: 'Uživatelů vykázalo snížené markery zánětu',
   airQuality: 'Kvalita vzduchu',
   airQualityDesc: 'Zvýšení koncentrace záporných iontů v testovaných prostorách',
   ionLevels: 'Hladiny iontů',
   ionLevelsDesc: 'Nad typickou koncentrací iontů v budovách',
+  seeScience: 'Zobrazit výzkum',
   
   // TopProduct
   yourFavorite: 'Váš oblíbenec',
   communityChoice: 'Volba komunity',
-  bestSellingDesc: 'Nejprodávanější model roku 2025 - stále dostupný přes tajný odkaz.',
+  bestSellingDesc: 'Nejprodávanější model roku 2025.',
   viewProduct: 'Zobrazit produkt',
   
   // TopProductsList
   topPerformers: 'Nejúspěšnější',
   mostPopularProducts: 'Nejoblíbenější produkty',
   popularProductsDesc: 'Modely, které v roce 2025 přinesly harmonii do nejvíce domovů.',
-  topSomavedics: 'Top 6 Somavediců',
-  topAccessories: 'Top 4 příslušenství',
+  topSomavedics: 'Top 4 Somavediců',
+  topAccessories: 'Top 3 příslušenství',
   
-  // SalesChart
-  yearlyTrends: 'Roční trendy',
-  momentum: 'Dynamika',
-  momentumDesc: 'Rok 2025 zaznamenal bezprecedentní růst adopce Somavedicu.',
-  yoy: 'meziročně',
+  // CustomerTestimonial
+  testimonialBadge: 'Láska zákazníků',
+  testimonialTitle: 'Pravá láska = Somavedic!',
+  testimonialSubtitle: 'Skutečné příběhy z naší komunity.',
+  testimonialDate: '18. ledna 2026',
+  testimonialHeadline: 'Pravá láska = Somavedic!',
+  testimonialText: 'Somavedic doporučuji vřele. Máme Rosalin a Vedic a oba vytvářejí v našem domově harmonii, klid, uvolnění a cítíme se ve svém domově hezky. Přes Vedic také aktivujeme vodu, kterou pije celá rodina. Kdokoliv se rozhodne, koupit si Somavedic, ať neváhá a kupuje... :-)',
+  testimonialAuthor: 'Zuzana Klinková',
+  testimonialAuthorInitial: 'Z',
+  testimonialLocation: 'Praha 5, Česká republika',
+  seeReviews: 'Zobrazit recenze',
   
   // CustomerMetrics
   customerMetricsBadge: 'Zákaznická zkušenost',
@@ -460,8 +504,8 @@ const cs: Translations = {
   day: 'den',
 
   // FutureDevice
-  futureDeviceTitle: 'Budoucnost harmonie',
-  futureDeviceSubtitle: 'Q2 2026. Buďte první, kdo se to dozví.',
+  futureDeviceTitle: 'Nový Somavedic bude jízda',
+  futureDeviceSubtitle: 'Q1 2026. Buďte první, kdo se to dozví.',
   emailPlaceholder: 'Zadejte svůj e-mail',
   notifyMe: 'Upozornit mě',
   formSubmitting: 'Odesílání...',

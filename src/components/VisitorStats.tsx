@@ -13,6 +13,14 @@ export const VisitorStats = ({ totalUnitsSold, totalCustomers, totalHours }: Vis
   const { t, region } = useLocale();
   const usesMetric = region.usesMetric;
   
+  // Map language codes to locale strings for number formatting
+  const localeMap: Record<string, string> = {
+    'en': 'en-US',
+    'de': 'de-DE',
+    'cs': 'cs-CZ',
+  };
+  const locale = localeMap[region.language] || 'en-US';
+  
   // Imperial: 2,800 sq ft coverage per unit, 480 gallons/year per unit
   // Metric: 260 m² coverage per unit, 1,825 liters/year per unit (5L/day)
   const sqFtProtected = totalUnitsSold * 2800;
@@ -26,10 +34,6 @@ export const VisitorStats = ({ totalUnitsSold, totalCustomers, totalHours }: Vis
     : (sqFtProtected / 1000000).toFixed(1);
   const areaLabel = usesMetric ? t.sqMProtected : t.sqFtProtected;
   const areaNote = usesMetric ? t.sqMNote : t.sqFtNote;
-  
-  const waterValue = usesMetric
-    ? (litersStructured / 1000).toFixed(0)
-    : (gallonsStructured / 1000).toFixed(0);
   const waterUnit = usesMetric ? t.literUnit : t.gallonUnit;
 
   return (
@@ -47,7 +51,7 @@ export const VisitorStats = ({ totalUnitsSold, totalCustomers, totalHours }: Vis
 
       <div className="mt-8 space-y-1">
         <h3 className="text-4xl font-bold tracking-tighter text-white">
-          {waterValue}k <span className="text-2xl text-white/20">{waterUnit}</span>
+          {(usesMetric ? litersStructured : gallonsStructured).toLocaleString(locale)} <span className="text-2xl text-white/20">{waterUnit}</span>
         </h3>
         <p className="text-md text-white/60 font-medium">{t.waterStructured}</p>
         <p className="text-[10px] text-white/20 mt-1">{t.waterNote}</p>
@@ -55,14 +59,14 @@ export const VisitorStats = ({ totalUnitsSold, totalCustomers, totalHours }: Vis
 
       <div className="mt-8 space-y-1">
         <h3 className="text-4xl font-bold tracking-tighter text-white">
-          {totalHours.toLocaleString()}
+          {totalHours.toLocaleString(locale)}
         </h3>
         <p className="text-md text-white/60 font-medium">{t.totalHoursHarmony}</p>
       </div>
 
       <div className="mt-8 space-y-1">
         <h3 className="text-4xl font-bold tracking-tighter text-white">
-          120
+          100
         </h3>
         <p className="text-md text-white/60 font-medium">{t.giftedSomavedics}</p>
       </div>

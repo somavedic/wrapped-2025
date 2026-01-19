@@ -89,14 +89,14 @@ export const TopProductsList = ({ somavedics, accessories }: TopProductsListProp
       className="md:row-span-2"
     >
       <div className="mt-2 space-y-6">
-        {/* Top 6 Somavedics */}
+        {/* Top 4 Somavedics */}
         <div>
           <div className="flex items-center gap-2 mb-3">
             <Zap className="w-4 h-4 text-somavedic-amber" />
             <h3 className="text-xs font-bold text-white/60 uppercase tracking-wider">{t.topSomavedics}</h3>
           </div>
           <div className="space-y-4">
-            {somavedics.map((product, idx) => (
+            {somavedics.slice(0, 4).map((product, idx) => (
               <ProductItem 
                 key={product.title} 
                 product={product} 
@@ -111,14 +111,14 @@ export const TopProductsList = ({ somavedics, accessories }: TopProductsListProp
         {/* Divider */}
         <div className="h-px bg-white/10" />
 
-        {/* Top 4 Accessories */}
+        {/* Top 3 Accessories */}
         <div>
           <div className="flex items-center gap-2 mb-3">
             <Package className="w-4 h-4 text-somavedic-amber" />
             <h3 className="text-xs font-bold text-white/60 uppercase tracking-wider">{t.topAccessories}</h3>
           </div>
           <div className="space-y-4">
-            {accessories.map((product, idx) => (
+            {accessories.slice(0, 3).map((product, idx) => (
               <ProductItem 
                 key={product.title} 
                 product={product} 

@@ -67,7 +67,7 @@ export const FutureDeviceTeaser = () => {
       {/* Content Container */}
       <div className="relative z-10 h-full">
         {/* Logo and Region Switcher Header */}
-        <div className="absolute top-0 left-0 right-0 z-20 px-4 md:px-12 py-6 md:py-8">
+        <div className="lg:absolute top-0 left-0 right-0 z-20 px-4 md:px-12 py-6 md:py-8">
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-row items-center justify-between gap-4">
               <SomaedicLogo className="h-8 md:h-10 w-auto" />
@@ -77,7 +77,7 @@ export const FutureDeviceTeaser = () => {
         </div>
 
         {/* Main Layout - Contained form + Edge-to-edge image */}
-        <div className="h-full flex flex-col lg:flex-row pt-20 lg:pt-0">
+        <div className="h-full flex flex-col lg:flex-row lg:pt-0">
           {/* Left side - Form Container (aligned with max-w-7xl) */}
           <div className="lg:w-1/2 flex justify-center lg:justify-end order-2 lg:order-1">
             <motion.div 
@@ -156,11 +156,21 @@ export const FutureDeviceTeaser = () => {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="lg:w-1/2 relative order-1 lg:order-2 min-h-[280px] lg:h-full overflow-hidden bg-no-repeat bg-[length:100%_auto] lg:bg-[length:auto_85%] bg-center lg:bg-[left_center]"
-            style={{
-              backgroundImage: 'url(/elaura-mockup-v3-optimised.png)',
-            }}
+            className="lg:w-1/2 relative order-1 lg:order-2 lg:h-full lg:overflow-hidden"
           >
+            {/* Mobile/Tablet: Natural size image */}
+            <img 
+              src="/elaura-mockup-v3-optimised.png" 
+              alt="Future Device"
+              className="lg:hidden w-full h-auto object-contain px-8"
+            />
+            {/* Desktop: Background positioned image */}
+            <div 
+              className="hidden lg:block absolute inset-0 bg-no-repeat bg-[length:auto_85%] bg-[left_center]"
+              style={{
+                backgroundImage: 'url(/elaura-mockup-v3-optimised.png)',
+              }}
+            />
           </motion.div>
         </div>
       </div>
