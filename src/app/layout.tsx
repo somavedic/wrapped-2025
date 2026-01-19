@@ -39,7 +39,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
     openGraph: {
       title: t.metaTitle,
       description: t.metaDescription,
-      images: [{ url: '/og-image.png', width: 1200, height: 630 }],
+      images: [{ url: '/social-share.png', width: 1200, height: 630 }],
       locale: region?.language || 'en',
       type: 'website',
     },
@@ -47,7 +47,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
       card: 'summary_large_image',
       title: t.metaTitle,
       description: t.metaDescription,
-      images: ['/og-image.png'],
+      images: ['/social-share.png'],
     },
   };
 }
