@@ -28,7 +28,16 @@ export const TopProduct = ({ product }: TopProductProps) => {
       className="md:col-span-1"
     >
       <div className="flex flex-col h-full">
-         <a href={productUrl} target="_blank" className="block group relative rounded-2xl overflow-hidden border border-white/10 h-64 cursor-pointer">
+         <a 
+           href={productUrl} 
+           target="_blank" 
+           onClick={() => {
+             if (typeof window !== 'undefined' && (window as any).umami) {
+               (window as any).umami.track('view-featured-product', { product: product.title });
+             }
+           }}
+           className="block group relative rounded-2xl overflow-hidden border border-white/10 h-64 cursor-pointer"
+         >
             <img 
               src={product.image} 
               alt={product.title}
@@ -52,6 +61,11 @@ export const TopProduct = ({ product }: TopProductProps) => {
          <a 
            href={productUrl}
            target="_blank"
+           onClick={() => {
+             if (typeof window !== 'undefined' && (window as any).umami) {
+               (window as any).umami.track('click-view-product-button', { product: product.title });
+             }
+           }}
            className="mt-4 w-full bg-white text-black font-bold py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-somavedic-amber transition-colors"
          >
            {t.viewProduct} <ArrowUpRight className="w-4 h-4" />

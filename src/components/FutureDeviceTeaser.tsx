@@ -38,6 +38,9 @@ export const FutureDeviceTeaser = () => {
           throw new Error('Subscription failed');
         }
 
+        if (typeof window !== 'undefined' && (window as any).umami) {
+          (window as any).umami.track('newsletter-signup', { region: region.code });
+        }
         setIsSubmitted(true);
         setEmail("");
         setTimeout(() => setIsSubmitted(false), 5000);
@@ -125,6 +128,11 @@ export const FutureDeviceTeaser = () => {
                     as="button" 
                     type="submit" 
                     disabled={isSubmitting || isSubmitted}
+                    onClick={() => {
+                      if (typeof window !== 'undefined' && (window as any).umami) {
+                        (window as any).umami.track('click-notify-me');
+                      }
+                    }}
                     color="#e137e1" 
                     speed="3s"
                     className={cn(

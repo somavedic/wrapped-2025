@@ -78,6 +78,11 @@ export const CustomerTestimonial = () => {
             href={reviewsUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => {
+              if (typeof window !== 'undefined' && (window as any).umami) {
+                (window as any).umami.track('click-see-reviews', { region: region.code });
+              }
+            }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 text-sm text-white/80 hover:bg-white/5 hover:border-white/30 hover:text-white transition-all duration-300"
           >
             {t.seeReviews}

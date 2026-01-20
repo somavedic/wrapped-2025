@@ -35,6 +35,11 @@ const ProductItem = ({ product, idx, maxQty, productUrl }: { product: ProductSta
           href={productUrl} 
           target="_blank" 
           rel="noopener noreferrer"
+          onClick={() => {
+            if (typeof window !== 'undefined' && (window as any).umami) {
+              (window as any).umami.track('view-popular-product', { product: product.title, category: product.category });
+            }
+          }}
           className="block w-20 h-16 bg-white/5 rounded-xl overflow-hidden border border-white/10 group-hover:border-somavedic-amber/30 transition-colors cursor-pointer"
         >
           {product.image ? (

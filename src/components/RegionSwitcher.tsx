@@ -38,6 +38,9 @@ export function RegionSwitcher() {
               <button
                 key={r.code}
                 onClick={() => {
+                  if (typeof window !== 'undefined' && (window as any).umami) {
+                    (window as any).umami.track('change-region', { region: r.code });
+                  }
                   setRegion(r);
                   setIsOpen(false);
                 }}
