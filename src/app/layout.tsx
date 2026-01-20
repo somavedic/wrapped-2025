@@ -88,7 +88,9 @@ export default function RootLayout({
           id="umami-analytics"
           src="https://cloud.umami.is/script.js"
           data-website-id="d7002f45-23e4-4a35-a2c3-42ecf39a6645"
-          data-domains="somavedicworld.com,somavedic-2025-overview.vercel.app"
+          {...(process.env.NODE_ENV === 'production' && {
+            'data-domains': 'somavedicworld.com,somavedic-2025-future.vercel.app'
+          })}
           strategy="afterInteractive"
         />
         <LocaleProvider>
