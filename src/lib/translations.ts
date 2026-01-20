@@ -102,7 +102,7 @@ export interface Translations {
 
 const en: Translations = {
   // Meta tags
-  metaTitle: 'Join the First Wave - Somavedic Elaura',
+  metaTitle: 'Somavedic 2025 & The Future: New Product Unveiling',
   metaDescription: 'A year of harmony, growth, and global impact. See how Somavedic protected spaces across the world in 2025.',
   
   // Header
@@ -241,7 +241,7 @@ const en: Translations = {
 
 const de: Translations = {
   // Meta tags
-  metaTitle: 'Join the First Wave - Somavedic Elaura',
+  metaTitle: 'Somavedic 2025 & The Future: New Product Unveiling',
   metaDescription: 'Ein Jahr voller Harmonie, Wachstum und globaler Wirkung. Sehen Sie, wie Somavedic 2025 Räume auf der ganzen Welt geschützt hat.',
   
   // Header
@@ -380,7 +380,7 @@ const de: Translations = {
 
 const cs: Translations = {
   // Meta tags
-  metaTitle: 'Join the First Wave - Somavedic Elaura',
+  metaTitle: 'Somavedic 2025 & The Future: New Product Unveiling',
   metaDescription: 'Rok plný harmonie, růstu a celosvětového dopadu. Podívejte se, jak Somavedic v roce 2025 chránil prostory po celém světě.',
   
   // Header

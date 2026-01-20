@@ -160,7 +160,7 @@ export const FutureDeviceTeaser = () => {
           >
             {/* Mobile/Tablet: Natural size image */}
             <img 
-              src="/elaura-mockup-v3-optimised.png" 
+              src="/somavedic-2025-future-unveil.png" 
               alt="Future Device"
               className="lg:hidden w-full h-auto object-contain px-8"
             />
@@ -168,7 +168,7 @@ export const FutureDeviceTeaser = () => {
             <div 
               className="hidden lg:block absolute inset-0 bg-no-repeat bg-[length:auto_85%] bg-[left_center]"
               style={{
-                backgroundImage: 'url(/elaura-mockup-v3-optimised.png)',
+                backgroundImage: 'url(/somavedic-2025-future-unveil.png)',
               }}
             />
           </motion.div>
