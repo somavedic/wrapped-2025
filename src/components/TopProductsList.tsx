@@ -4,6 +4,7 @@ import { BentoCard } from "./BentoGrid";
 import { Trophy, Zap, Package } from "lucide-react";
 import { motion } from "framer-motion";
 import { useLocale } from "./LocaleContext";
+import "./sr-only.css";
 
 interface ProductStat {
   title: string;
@@ -19,6 +20,8 @@ interface TopProductsListProps {
 }
 
 const ProductItem = ({ product, idx, maxQty, productUrl }: { product: ProductStat; idx: number; maxQty: number; productUrl: string }) => {
+  const percentage = Math.round((product.quantity / maxQty) * 100);
+  
   return (
     <motion.div
       key={product.title}
@@ -28,13 +31,17 @@ const ProductItem = ({ product, idx, maxQty, productUrl }: { product: ProductSta
       className="flex items-center gap-4 group"
     >
       <div className="relative">
-        <span className="absolute -top-2 -left-2 w-5 h-5 bg-somavedic-amber text-black text-[10px] font-bold flex items-center justify-center rounded-full z-10">
+        <span 
+          className="absolute -top-2 -left-2 w-5 h-5 bg-somavedic-amber text-black text-[10px] font-bold flex items-center justify-center rounded-full z-10"
+          aria-label={`Rank ${idx + 1}`}
+        >
           {idx + 1}
         </span>
         <a 
           href={productUrl} 
           target="_blank" 
           rel="noopener noreferrer"
+          aria-label={`${product.title} (opens in new tab)`}
           onClick={() => {
             if (typeof window !== 'undefined' && (window as any).umami) {
               (window as any).umami.track('view-popular-product', { product: product.title, category: product.category });
@@ -45,12 +52,12 @@ const ProductItem = ({ product, idx, maxQty, productUrl }: { product: ProductSta
           {product.image ? (
             <img
               src={product.image}
-              alt={product.title}
+              alt=""
               className="w-full h-full object-cover transition-all"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center">
-              <Trophy className="w-4 h-4 text-white/20" />
+              <Trophy className="w-4 h-4 text-white/20" aria-hidden="true" />
             </div>
           )}
         </a>
@@ -66,13 +73,21 @@ const ProductItem = ({ product, idx, maxQty, productUrl }: { product: ProductSta
           <h4 className="text-sm font-medium text-white truncate group-hover:text-somavedic-amber transition-colors group-hover:underline underline-offset-4 decoration-somavedic-amber/50">
             {product.title}
           </h4>
+          <span className="sr-only">(opens in new tab)</span>
         </a>
       </div>
     
-      <div className="h-1 w-12 bg-white/5 rounded-full overflow-hidden">
+      <div 
+        className="h-1 w-12 bg-white/5 rounded-full overflow-hidden"
+        role="progressbar"
+        aria-valuenow={percentage}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-label={`${product.title} popularity: ${percentage}%`}
+      >
          <motion.div 
            initial={{ width: 0 }}
-           animate={{ width: `${(product.quantity / maxQty) * 100}%` }}
+           animate={{ width: `${percentage}%` }}
            transition={{ duration: 1, delay: 0.5 + idx * 0.1 }}
            className="h-full bg-somavedic-amber/50"
          />

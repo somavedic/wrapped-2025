@@ -2,6 +2,7 @@
 
 import { useLocale } from "@/components/LocaleContext";
 import { cn } from "@/lib/utils";
+import "./sr-only.css";
 import { LightRays } from "@/components/ui/LightRays";
 import { StarBorder } from "@/components/ui/StarBorder";
 import { TextType } from "@/components/ui/TextType";
@@ -107,7 +108,9 @@ export const FutureDeviceTeaser = () => {
               <div className="w-full max-w-md">
                 <form onSubmit={handleSubmit} className="w-full space-y-4">
                   <div className="relative">
+                    <label htmlFor="email" className="sr-only">{t.emailPlaceholder}</label>
                     <input
+                      id="email"
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
@@ -115,6 +118,7 @@ export const FutureDeviceTeaser = () => {
                       disabled={isSubmitting || isSubmitted}
                       className="w-full bg-white/10 backdrop-blur-sm border border-white/20 rounded-[20px] px-6 py-4 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-somavedic-amber/50 focus:border-somavedic-amber/30 transition-all text-center lg:text-left disabled:opacity-50 disabled:cursor-not-allowed"
                       required
+                      aria-label={t.emailPlaceholder}
                     />
                   </div>
                   

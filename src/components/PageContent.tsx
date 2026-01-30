@@ -123,12 +123,15 @@ export function PageContent({ stats, mockData }: PageContentProps) {
 
       {/* Footer / CTA */}
       <div className="max-w-7xl mx-auto mt-20 py-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 md:px-4">
-        <div className="flex items-center gap-4">
-           <img src="/somavedic-symbol.png" alt="Somavedic" className="w-10 h-10" />
+         <div className="flex items-center gap-4">
+            <img src="/somavedic-symbol.png" alt="Somavedic logo" className="w-10 h-10" />
            <span className="text-white tracking-tight">Somavedic 2025</span>
         </div>
         <button 
+          type="button"
           onClick={handleShare}
+          aria-live="polite"
+          aria-atomic="true"
           className="px-8 py-3 bg-white text-black font-bold rounded-full hover:scale-105 transition-all active:scale-95"
         >
           {isCopied ? t.linkCopied : t.shareWithFriend}

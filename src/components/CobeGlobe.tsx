@@ -122,10 +122,12 @@ export function CobeGlobe() {
   }, []);
 
   return (
-    <div className="w-full h-full flex items-center justify-center relative">
+    <div className="w-full h-full flex items-center justify-center relative" role="img" aria-label="Interactive 3D globe showing global presence across 30+ countries">
        <div className="absolute inset-0 z-10 pointer-events-none" />
        <canvas
         ref={canvasRef}
+        role="presentation"
+        aria-hidden="true"
         onPointerDown={(e) => {
             pointerInteracting.current = e.clientX - pointerInteractionMovement.current;
             canvasRef.current!.style.cursor = 'grabbing';

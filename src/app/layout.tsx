@@ -3,6 +3,7 @@ import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { LocaleProvider } from "@/components/LocaleContext";
+import { HtmlLangUpdater } from "@/components/HtmlLangUpdater";
 import { getRegionBySlug } from "@/lib/locales";
 import { getTranslations } from "@/lib/translations";
 
@@ -94,6 +95,7 @@ export default function RootLayout({
           strategy="afterInteractive"
         />
         <LocaleProvider>
+          <HtmlLangUpdater />
           {children}
         </LocaleProvider>
       </body>

@@ -3,6 +3,7 @@
 import { BentoCard } from "./BentoGrid";
 import { Shield, Heart, Sparkles, Wind, ExternalLink } from "lucide-react";
 import { useLocale } from "./LocaleContext";
+import "./sr-only.css";
 
 interface ImpactCounterProps {
   totalHours: number;
@@ -68,7 +69,8 @@ export const ImpactCounter = ({ totalHours }: ImpactCounterProps) => {
         className="inline-flex items-center gap-2 mt-8 px-4 py-2 rounded-full border border-white/20 text-sm text-white/80 hover:bg-white/5 hover:border-white/30 hover:text-white transition-all duration-300"
       >
         {t.seeScience}
-        <ExternalLink className="w-3.5 h-3.5" />
+        <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+        <span className="sr-only">(opens in new tab)</span>
       </a>
     </BentoCard>
   );

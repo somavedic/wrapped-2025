@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { BentoCard } from "./BentoGrid";
 import { Star, ExternalLink } from "lucide-react";
 import { useLocale } from "./LocaleContext";
+import "./sr-only.css";
 
 export const CustomerTestimonial = () => {
   const { t, region } = useLocale();
@@ -67,7 +68,7 @@ export const CustomerTestimonial = () => {
             <div>
               <p className="text-sm font-semibold text-white">{t.testimonialAuthor}</p>
               <p className="text-xs text-white/40 flex items-center gap-1">
-                <span>📍</span>
+                <span role="img" aria-label="Location">📍</span>
                 {t.testimonialLocation}
               </p>
             </div>
@@ -86,7 +87,8 @@ export const CustomerTestimonial = () => {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 text-sm text-white/80 hover:bg-white/5 hover:border-white/30 hover:text-white transition-all duration-300"
           >
             {t.seeReviews}
-            <ExternalLink className="w-3.5 h-3.5" />
+            <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+            <span className="sr-only">(opens in new tab)</span>
           </a>
         </motion.div>
       </div>
