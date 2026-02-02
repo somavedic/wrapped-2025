@@ -81,22 +81,20 @@ export async function POST(req: NextRequest) {
         headers: {
           'Authorization': `Klaviyo-API-Key ${privateKey}`,
           'Content-Type': 'application/vnd.api+json',
-          'revision': '2024-02-15' // Use a recent stable revision
+          'revision': '2025-07-15'
         },
         body: JSON.stringify({
           data: {
             type: 'profile-subscription-bulk-create-job',
             attributes: {
               custom_source: 'Elaura',
+              list_id: listId,
               profiles: {
                 data: [
                   {
                     type: 'profile',
                     attributes: {
                       email: email,
-                      properties: {
-                        $source: 'Elaura',
-                      },
                       subscriptions: {
                         email: {
                           marketing: {
@@ -107,14 +105,6 @@ export async function POST(req: NextRequest) {
                     }
                   }
                 ]
-              }
-            },
-            relationships: {
-              list: {
-                data: {
-                  type: 'list',
-                  id: listId
-                }
               }
             }
           }
