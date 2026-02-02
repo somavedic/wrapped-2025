@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { GoogleTagManager } from "@next/third-parties/google";
+import { Suspense } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { LocaleProvider } from "@/components/LocaleContext";
 import { HtmlLangUpdater } from "@/components/HtmlLangUpdater";
+import { GTMPageView } from "@/components/GTMPageView";
 import { getRegionBySlug } from "@/lib/locales";
 import { getTranslations } from "@/lib/translations";
 
@@ -77,6 +79,9 @@ export default function RootLayout({
         />
         <LocaleProvider>
           <HtmlLangUpdater />
+          <Suspense fallback={null}>
+            <GTMPageView />
+          </Suspense>
           {children}
         </LocaleProvider>
       </body>

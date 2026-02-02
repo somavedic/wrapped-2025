@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useLocale } from "@/components/LocaleContext";
 import { cn } from "@/lib/utils";
 import "./sr-only.css";
@@ -11,6 +12,7 @@ import { SomaedicLogo } from "@/components/SomaedicLogo";
 import { motion } from "framer-motion";
 import { Send } from "lucide-react";
 import { useState } from "react";
+import { sendGTMEvent } from "@next/third-parties/google";
 
 export const FutureDeviceTeaser = () => {
   const { t, region } = useLocale();
@@ -42,6 +44,14 @@ export const FutureDeviceTeaser = () => {
         if (typeof window !== 'undefined' && (window as any).umami) {
           (window as any).umami.track('newsletter-signup', { region: region.code });
         }
+        
+        // Send form_submit event to GTM dataLayer
+        sendGTMEvent({
+          event: 'form_submit',
+          form_name: 'newsletter_signup',
+          form_destination: region.code,
+        });
+        
         setIsSubmitted(true);
         setEmail("");
         setTimeout(() => setIsSubmitted(false), 5000);
@@ -171,21 +181,31 @@ export const FutureDeviceTeaser = () => {
             className="lg:w-1/2 relative order-1 lg:order-2 lg:h-full lg:overflow-hidden"
           >
             {/* Mobile/Tablet: Natural size image */}
-            <img 
-              src="/somavedic-2025-future-unveil.png" 
-              alt="Future Device"
-              className="lg:hidden w-full h-auto object-contain px-8"
-            />
-            {/* Desktop: Background positioned image */}
-            <div 
-              className="hidden lg:block absolute inset-0 bg-no-repeat bg-[length:auto_85%] bg-[left_center]"
-              style={{
-                backgroundImage: 'url(/somavedic-2025-future-unveil.png)',
-              }}
-            />
+            <div className="lg:hidden w-full px-8">
+              <Image 
+                src="/somavedic-2025-future-unveil.png" 
+                alt="Future Device"
+                width={800}
+                height={800}
+                priority
+                className="w-full h-auto object-contain"
+              />
+            </div>
+            {/* Desktop: Fill positioned image */}
+            <div className="hidden lg:block absolute inset-0">
+              <Image 
+                src="/somavedic-2025-future-unveil.png"
+                alt="Future Device"
+                fill
+                priority
+                sizes="50vw"
+                className="object-contain object-left"
+              />
+            </div>
           </motion.div>
         </div>
       </div>
     </section>
   );
 };
+

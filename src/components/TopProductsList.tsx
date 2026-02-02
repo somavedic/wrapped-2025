@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { BentoCard } from "./BentoGrid";
 import { Trophy, Zap, Package } from "lucide-react";
 import { motion } from "framer-motion";
@@ -50,9 +51,11 @@ const ProductItem = ({ product, idx, maxQty, productUrl }: { product: ProductSta
           className="block w-20 h-16 bg-white/5 rounded-xl overflow-hidden border border-white/10 group-hover:border-somavedic-amber/30 transition-colors cursor-pointer"
         >
           {product.image ? (
-            <img
+            <Image
               src={product.image}
               alt=""
+              width={80}
+              height={64}
               className="w-full h-full object-cover transition-all"
             />
           ) : (
