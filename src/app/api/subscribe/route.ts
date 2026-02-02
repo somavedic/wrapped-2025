@@ -87,7 +87,7 @@ export async function POST(req: NextRequest) {
           data: {
             type: 'profile-subscription-bulk-create-job',
             attributes: {
-              custom_source: 'Somavedic 2025',
+              custom_source: 'Elaura',
               profiles: {
                 data: [
                   {
