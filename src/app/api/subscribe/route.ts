@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    console.log(`[Subscribe API] Received request for: ${email}, region: ${region}`);
+    console.log(`[Subscribe API] Received subscription request for region: ${region}`);
 
     let privateKey = '';
     let listId = '';
